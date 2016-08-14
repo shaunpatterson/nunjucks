@@ -80,7 +80,7 @@ var Compiler = Object.extend({
         this.emitLine('var lineno = null;');
         this.emitLine('var colno = null;');
         this.emitLine('var ' + this.buffer + ' = "";');
-        this.emitLine('try {');
+        //this.emitLine('try {');
     },
 
     emitFuncEnd: function(noReturn) {
@@ -89,9 +89,9 @@ var Compiler = Object.extend({
         }
 
         this.closeScopeLevels();
-        this.emitLine('} catch (e) {');
-        this.emitLine('  cb(runtime.handleError(e, lineno, colno));');
-        this.emitLine('}');
+        //this.emitLine('} catch (e) {');
+        //this.emitLine('  cb(runtime.handleError(e, lineno, colno));');
+        //this.emitLine('}');
         this.emitLine('}');
         this.buffer = null;
     },
