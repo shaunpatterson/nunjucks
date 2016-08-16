@@ -7,6 +7,8 @@ var nunjucks = require('../index');
 
 var src = fs.readFileSync('case.html', 'utf-8');
 
+nunjucks.installJinjaCompat();
+
 var oldEnv = new oldNunjucks.Environment(null);
 var oldTmpl = new oldNunjucks.Template(src, env, null, null, true);
 

@@ -139,16 +139,18 @@ function installCompat() {
   runtime.memberLookup = function(obj, val, autoescape) { // jshint ignore:line
     obj = obj || {};
 
+    /*
     // If the object is an object, return any of the methods that Python would
     // otherwise provide.
     if (lib.isArray(obj) && ARRAY_MEMBERS.hasOwnProperty(val)) {
       return function() {return ARRAY_MEMBERS[val].apply(obj, arguments);};
     }
 
+    /*
     if (lib.isObject(obj) && OBJECT_MEMBERS.hasOwnProperty(val)) {
       return function() {return OBJECT_MEMBERS[val].apply(obj, arguments);};
     }
-
+    */
     return orig_memberLookup.apply(this, arguments);
   };
 }
