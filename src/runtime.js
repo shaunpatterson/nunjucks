@@ -349,6 +349,7 @@ module.exports = {
     ensureDefined: ensureDefined,
     memberLookup: memberLookup,
     contextOrFrameLookup: contextOrFrameLookup,
+    cfl: contextOrFrameLookup,
     callWrap: callWrap,
     handleError: handleError,
     isArray: lib.isArray,

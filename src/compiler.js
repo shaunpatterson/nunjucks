@@ -316,7 +316,7 @@ var Compiler = Object.extend({
             this.emit(v);
         }
         else {
-            this.emit('runtime.contextOrFrameLookup(' +
+            this.emit('runtime.cfl(' +
                       'context, frame, "' + name + '")');
         }
     },

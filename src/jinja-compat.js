@@ -7,7 +7,7 @@ function installCompat() {
   var lib = this.lib; // jshint ignore:line
 
   var orig_contextOrFrameLookup = runtime.contextOrFrameLookup;
-  runtime.contextOrFrameLookup = function(context, frame, key) {
+  runtime.cfl = runtime.contextOrFrameLookup = function(context, frame, key) {
     var val = orig_contextOrFrameLookup.apply(this, arguments);
     if (val === undefined) {
       switch (key) {
