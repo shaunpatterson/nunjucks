@@ -136,7 +136,7 @@ function installCompat() {
   OBJECT_MEMBERS.iteritems = OBJECT_MEMBERS.items;
   OBJECT_MEMBERS.itervalues = OBJECT_MEMBERS.values;
   OBJECT_MEMBERS.iterkeys = OBJECT_MEMBERS.keys;
-  runtime.memberLookup = function(obj, val, autoescape) { // jshint ignore:line
+  runtime.ml = runtime.memberLookup = function(obj, val, autoescape) { // jshint ignore:line
     obj = obj || {};
 
     // If the object is an object, return any of the methods that Python would

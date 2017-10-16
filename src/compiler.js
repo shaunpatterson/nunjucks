@@ -90,7 +90,7 @@ var Compiler = Object.extend({
 
         this.closeScopeLevels();
         this.emitLine('} catch (e) {');
-        this.emitLine('  cb(runtime.handleError(e, lineno, colno));');
+        this.emitLine('  cb(runtime.he(e, lineno, colno));');
         this.emitLine('}');
         this.emitLine('}');
         this.buffer = null;
@@ -215,7 +215,7 @@ var Compiler = Object.extend({
         var autoescape = typeof node.autoescape === 'boolean' ? node.autoescape : true;
 
         if(!async) {
-            this.emit(this.buffer + ' += runtime.suppressValue(');
+            this.emit(this.buffer + ' += runtime.sv(');
         }
 
         this.emit('env.getExtension("' + node.extName + '")["' + node.prop + '"](');
@@ -274,7 +274,7 @@ var Compiler = Object.extend({
         if(async) {
             var res = this.tmpid();
             this.emitLine(', ' + this.makeCallback(res));
-            this.emitLine(this.buffer + ' += runtime.suppressValue(' + res + ', ' + autoescape + ' && env.opts.autoescape);');
+            this.emitLine(this.buffer + ' += runtime.sv(' + res + ', ' + autoescape + ' && env.opts.autoescape);');
             this.addScopeLevel();
         }
         else {
@@ -426,7 +426,7 @@ var Compiler = Object.extend({
     },
 
     compileLookupVal: function(node, frame) {
-        this.emit('runtime.memberLookup((');
+        this.emit('runtime.ml((');
         this._compileExpression(node.target, frame);
         this.emit('),');
         this._compileExpression(node.val, frame);
@@ -1081,7 +1081,7 @@ var Compiler = Object.extend({
                 }
             }
             else {
-                this.emit(this.buffer + ' += runtime.suppressValue(');
+                this.emit(this.buffer + ' += runtime.sv(');
                 if(this.throwOnUndefined) {
                     this.emit('runtime.ensureDefined(');
                 }

@@ -1520,7 +1520,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        this.closeScopeLevels();
 	        this.emitLine('} catch (e) {');
-	        this.emitLine('  cb(runtime.handleError(e, lineno, colno));');
+	        this.emitLine('  cb(runtime.he(e, lineno, colno));');
 	        this.emitLine('}');
 	        this.emitLine('}');
 	        this.buffer = null;
@@ -1645,7 +1645,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var autoescape = typeof node.autoescape === 'boolean' ? node.autoescape : true;
 
 	        if(!async) {
-	            this.emit(this.buffer + ' += runtime.suppressValue(');
+	            this.emit(this.buffer + ' += runtime.sv(');
 	        }
 
 	        this.emit('env.getExtension("' + node.extName + '")["' + node.prop + '"](');
@@ -1704,7 +1704,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if(async) {
 	            var res = this.tmpid();
 	            this.emitLine(', ' + this.makeCallback(res));
-	            this.emitLine(this.buffer + ' += runtime.suppressValue(' + res + ', ' + autoescape + ' && env.opts.autoescape);');
+	            this.emitLine(this.buffer + ' += runtime.sv(' + res + ', ' + autoescape + ' && env.opts.autoescape);');
 	            this.addScopeLevel();
 	        }
 	        else {
@@ -1856,7 +1856,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    compileLookupVal: function(node, frame) {
-	        this.emit('runtime.memberLookup((');
+	        this.emit('runtime.ml((');
 	        this._compileExpression(node.target, frame);
 	        this.emit('),');
 	        this._compileExpression(node.val, frame);
@@ -2511,7 +2511,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                }
 	            }
 	            else {
-	                this.emit(this.buffer + ' += runtime.suppressValue(');
+	                this.emit(this.buffer + ' += runtime.sv(');
 	                if(this.throwOnUndefined) {
 	                    this.emit('runtime.ensureDefined(');
 	                }
@@ -5355,12 +5355,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    makeKeywordArgs: makeKeywordArgs,
 	    numArgs: numArgs,
 	    suppressValue: suppressValue,
+	    sv: suppressValue,
 	    ensureDefined: ensureDefined,
 	    memberLookup: memberLookup,
+	    ml: memberLookup,
 	    contextOrFrameLookup: contextOrFrameLookup,
 	    cfl: contextOrFrameLookup,
 	    callWrap: callWrap,
-	    handleError: handleError,
+	    he: handleError,
 	    isArray: lib.isArray,
 	    keys: lib.keys,
 	    SafeString: SafeString,
@@ -6693,7 +6695,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  OBJECT_MEMBERS.iteritems = OBJECT_MEMBERS.items;
 	  OBJECT_MEMBERS.itervalues = OBJECT_MEMBERS.values;
 	  OBJECT_MEMBERS.iterkeys = OBJECT_MEMBERS.keys;
-	  runtime.memberLookup = function(obj, val, autoescape) { // jshint ignore:line
+	  runtime.ml = runtime.memberLookup = function(obj, val, autoescape) { // jshint ignore:line
 	    obj = obj || {};
 
 	    // If the object is an object, return any of the methods that Python would
