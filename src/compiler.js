@@ -366,7 +366,7 @@ var Compiler = Object.extend({
     },
 
     compileIn: function(node, frame) {
-      this.emit('runtime.inOperator(');
+      this.emit('runtime.inOp(');
       this.compile(node.left, frame);
       this.emit(',');
       this.compile(node.right, frame);
@@ -457,7 +457,7 @@ var Compiler = Object.extend({
         this.emit('(lineno = ' + node.lineno +
                   ', colno = ' + node.colno + ', ');
 
-        this.emit('runtime.callWrap(');
+        this.emit('runtime.cw(');
         // Compile it as normal.
         this._compileExpression(node.name, frame);
 
@@ -499,7 +499,7 @@ var Compiler = Object.extend({
             names.push(pair.key.value);
         });
 
-        this.emit('runtime.makeKeywordArgs(');
+        this.emit('runtime.mka(');
         this.compileDict(node, frame);
         this.emit(')');
     },

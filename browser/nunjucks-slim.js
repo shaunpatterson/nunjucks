@@ -2357,6 +2357,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Frame: Frame,
 	    makeMacro: makeMacro,
 	    makeKeywordArgs: makeKeywordArgs,
+	    mka: makeKeywordArgs,
 	    numArgs: numArgs,
 	    suppressValue: suppressValue,
 	    sv: suppressValue,
@@ -2374,7 +2375,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    markSafe: markSafe,
 	    asyncEach: asyncEach,
 	    asyncAll: asyncAll,
-	    inOperator: lib.inOperator
+	    inOperator: lib.inOperator,
+	    inOp: lib.inOperator
 	};
 
 

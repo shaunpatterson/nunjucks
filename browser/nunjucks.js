@@ -1796,7 +1796,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    },
 
 	    compileIn: function(node, frame) {
-	      this.emit('runtime.inOperator(');
+	      this.emit('runtime.inOp(');
 	      this.compile(node.left, frame);
 	      this.emit(',');
 	      this.compile(node.right, frame);
@@ -1887,7 +1887,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        this.emit('(lineno = ' + node.lineno +
 	                  ', colno = ' + node.colno + ', ');
 
-	        this.emit('runtime.callWrap(');
+	        this.emit('runtime.cw(');
 	        // Compile it as normal.
 	        this._compileExpression(node.name, frame);
 
@@ -1929,7 +1929,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	            names.push(pair.key.value);
 	        });
 
-	        this.emit('runtime.makeKeywordArgs(');
+	        this.emit('runtime.mka(');
 	        this.compileDict(node, frame);
 	        this.emit(')');
 	    },
@@ -5353,6 +5353,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    Frame: Frame,
 	    makeMacro: makeMacro,
 	    makeKeywordArgs: makeKeywordArgs,
+	    mka: makeKeywordArgs,
 	    numArgs: numArgs,
 	    suppressValue: suppressValue,
 	    sv: suppressValue,
@@ -5370,7 +5371,8 @@ return /******/ (function(modules) { // webpackBootstrap
 	    markSafe: markSafe,
 	    asyncEach: asyncEach,
 	    asyncAll: asyncAll,
-	    inOperator: lib.inOperator
+	    inOperator: lib.inOperator,
+	    inOp: lib.inOperator
 	};
 
 
